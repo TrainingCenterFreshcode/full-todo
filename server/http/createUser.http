@@ -2,9 +2,9 @@ POST http://localhost:5001/api/users/sign-up HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "jane.doe@gmail.com",
-  "passwordHash": "qwerty123",
-  "firstName": "Jane",
+  "email": "john.doe@gmail.com",
+  "password": "qwerty123",
+  "firstName": "John",
   "lastName": "Doe",
   "birthday": "1986-12-25"
 }
