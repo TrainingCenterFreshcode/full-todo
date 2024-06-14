@@ -5,7 +5,7 @@ import styles from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const Home = (props) => {
-  const [state, setState] = useState(true); // true -> SignUp ; false -> SignIn
+  const [state, setState] = useState(false); // true -> SignUp ; false -> SignIn
   // const [data, setData] = useState();
   const [error, setError] = useState(null);
 
