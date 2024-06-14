@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { DB } = require('../configs/db');
 const User = require('./User');
+const Task = require('./Task');
 
 async function start() {
   await mongoose.connect(DB)
@@ -11,5 +12,5 @@ async function start() {
 start();
 
 module.exports = {
-  User
+  User, Task
 }

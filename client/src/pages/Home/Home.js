@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
 import styles from './Home.module.css';
-import { registerUser } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const Home = (props) => {
