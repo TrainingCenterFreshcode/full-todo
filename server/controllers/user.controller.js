@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const bcrypt = require('bcrypt');
 const NotFoundError = require('../errors/NotFound');
+const { createToken, verifyToken } = require('../middlewares/createSession');
 
 module.exports.registrationUser = async (req, res, next) => {
   try {
@@ -33,10 +34,22 @@ module.exports.loginUser = async (req, res, next) => {
       if(!result) {
         throw new NotFoundError('Incorrect password');
       }
-      return res.status(200).send({ data: foundUser });
+      const token = await createToken({ userId: foundUser._id, email: foundUser.email });
+      console.log(token);
+      // return res.status(200).send({ data: foundUser });
     } else {
       throw new NotFoundError('Incorrect email');
     }
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports.checkToken = async (req, res, next) => {
+  try {
+    const { params: { token } } = req;
+    const result = await verifyToken(token);
+    console.log(result);
   } catch (error) {
     next(error);
   }
