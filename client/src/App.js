@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home sendUser={setUser} />} />
-        <Route path="/tasks/" element={<TodoPage user={user} />} />
+        <Route path="/tasks/" element={<TodoPage user={user} sendUser={setUser} />} />
       </Routes>
     </BrowserRouter>
   );

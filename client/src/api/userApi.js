@@ -33,3 +33,13 @@ export const loginUser = async (data) => {
 
   return response.json();
 }
+
+export const authUser = async (token) => {
+  const response = await fetch(`${CONSTANTS.API_BASE}/users/${token}`);
+  if(response.status === 403) {
+    const error = await response.json();
+    return Promise.reject(error);
+  }
+
+  return response.json();
+}
