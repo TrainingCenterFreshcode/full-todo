@@ -1,1 +1,2 @@
-GET http://localhost:5001/api/tasks/666b1ef307fa22663c4020ae HTTP/1.1
+GET http://localhost:5001/api/tasks/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZiMWVmMzA3ZmEyMjY2M2M0MDIwYWUiLCJlbWFpbCI6ImphbmUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTcxODcyNTQ2OSwiZXhwIjoxNzE4NzI5MDY5fQ.gIEjulCNcyQ534f1H8czQY-HdR5okRflHBa-DS2AUTw

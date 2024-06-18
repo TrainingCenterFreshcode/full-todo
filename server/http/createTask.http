@@ -1,9 +1,9 @@
 POST http://localhost:5001/api/tasks/ HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZiMWVmMzA3ZmEyMjY2M2M0MDIwYWUiLCJlbWFpbCI6ImphbmUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTcxODcyNTQ2OSwiZXhwIjoxNzE4NzI5MDY5fQ.gIEjulCNcyQ534f1H8czQY-HdR5okRflHBa-DS2AUTw
 
 {
-  "authorId": "666b1ef307fa22663c4020ae",
-  "body": "Заварити чай",
+  "body": "Помити підлогу",
   "createdAt": "2024-06-14",
   "deadline": "2024-06-14",
   "status": "done"
