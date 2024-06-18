@@ -9,7 +9,7 @@ module.exports.registrationUser = async (req, res, next) => {
 
     const createdUser = await User.create({ ...body, passwordHash });
 
-    const token = await createToken({ userId: foundUser._id, email: foundUser.email });
+    const token = await createToken({ userId: createdUser._id, email: createdUser.email });
     
     return res.status(201).send({ data: createdUser, tokens: { token } });
   } catch (error) {
