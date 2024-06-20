@@ -45,16 +45,24 @@ module.exports.loginUser = async (req, res, next) => {
         body.password,
         foundUser.passwordHash
       );
+      
       if (!result) {
         throw new NotFoundError('Incorrect password');
       }
+
       const accessToken = await createAccessToken({
         userId: foundUser._id,
         email: foundUser.email,
       });
+
       const refreshToken = await createRefreshToken({
         userId: foundUser._id,
         email: foundUser.email,
+      });
+
+      await RefreshToken.create({
+        token: refreshToken,
+        userId: foundUser._id,
       });
       return res
         .status(200)
@@ -90,14 +98,16 @@ module.exports.refreshSession = async (req, res, next) => {
 
   let verifyResult;
 
-  try { // перевіряємо, чи взагалі валідний refresh token
+  try {
+    // перевіряємо, чи взагалі валідний refresh token
     verifyResult = await verifyRefreshToken(refreshToken);
   } catch (error) {
     const newError = new RefreshTokenError('Invalid refresh token');
     return next(newError);
   }
 
-  try { // виконується логіка оновлення сессії
+  try {
+    // виконується логіка оновлення сессії
     /*
 
     Access token
@@ -118,10 +128,14 @@ module.exports.refreshSession = async (req, res, next) => {
     */
     if (verifyResult) {
       const user = await User.findOne({ _id: verifyResult.userId });
-      const oldRefreshTokenFromDB = await RefreshToken.findOne({ $and: [{ token: refreshToken }, { userId: user._id }] });
+      const oldRefreshTokenFromDB = await RefreshToken.findOne({
+        $and: [{ token: refreshToken }, { userId: user._id }],
+      });
 
-      if(oldRefreshTokenFromDB) {
-        await RefreshToken.deleteOne({ $and: [{ token: refreshToken }, { userId: user._id }] });
+      if (oldRefreshTokenFromDB) {
+        await RefreshToken.deleteOne({
+          $and: [{ token: refreshToken }, { userId: user._id }],
+        });
 
         const newAccessToken = await createAccessToken({
           userId: user._id,
@@ -135,15 +149,15 @@ module.exports.refreshSession = async (req, res, next) => {
 
         await RefreshToken.create({
           token: newRefreshToken,
-          userId: user._id
+          userId: user._id,
         });
-  
+
         return res.status(200).send({
-            tokens: {
-              accessToken: newAccessToken,
-              refreshToken: newRefreshToken,
-            },
-          });
+          tokens: {
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken,
+          },
+        });
       }
     } else {
       return res.status(401).send({ error: 'Invalid token' });
