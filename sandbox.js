@@ -1,13 +1,15 @@
 // Функції-генератори
 
+
 function* myGenerator() {
-  ///
-  yield 1;
-  ///
-  yield 2;
-  ///
-  yield 3;
+  console.log('Строчка 1');
+  yield 'Проміжний результат 1';
+  console.log('Строчка 2');
+  yield 'Проміжний результат 2';
+  console.log('Строчка 3');
+  yield 'Проміжний результат 3';
 }
+
 
 const gen = myGenerator();
 
@@ -19,7 +21,10 @@ function* mySecondGenerator(start, end) {
   }
 }
 
-const gen2 = mySecondGenerator(1, 5);
+const gen2 = mySecondGenerator(1, 4);
+
+
+
 
 function* myThirdGenerator() {
   let value = yield;
@@ -28,9 +33,11 @@ function* myThirdGenerator() {
 
 const gen3 = myThirdGenerator();
 
-gen3.next(); // запускає генератор
 
-gen3.next(); // передає значення у генератор
+
+
+
+
 
 
 
@@ -73,14 +80,30 @@ const myIterator = {
 
 
 
+/* ДЗ
 
-// ДЗ
-/* 
 
-Написати функцію-генератор, яка генерує числа від 0 до 100.
-З кожним викликом число інкрементується на 1.
+Задача:
 
-За допомогою написаного генератора, потрібно знайти суму чисел від 0 до 100.
+1. Написати функцію-генератор, яка генерує числа від 0 до 100.
+З кожним викликом цього генератора, число інкрементується на 1.
+2. За допомогою написаного генератора знайти суму чисел від 0 до 100.
+
 (5050)
 
+
 */
+
+function* numberGenerator(start, end) {
+  for(let i = start; i <= end; i++) {
+    yield i;
+  }
+}
+
+const it = numberGenerator(0, 100);
+let sum = 0;
+for(let i = 0; i <= 100; i++) {
+  const { value } = it.next();
+  sum += value;
+}
+console.log(sum);
