@@ -14,16 +14,16 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!user) {
-      authUser()
-        .then((userData) => {
-          setUser(userData.data);
-        })
-        .catch((error) => {
-          // перенаправляємось на аутенфікацію
-          return history.push('/');
-        });
-    }
+    // if (!user) {
+    //   authUser()
+    //     .then((userData) => {
+    //       setUser(userData.data);
+    //     })
+    //     .catch((error) => {
+    //       // перенаправляємось на аутенфікацію
+    //       return history.push('/');
+    //     });
+    // }
   }, []);
 
   return (

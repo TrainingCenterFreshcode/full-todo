@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { loginUser } from '../../api/userApi';
+// import { loginUser } from '../../api/userApi';
+import { loginUser } from '../../api/axiosApi';
 
 const SignIn = (props) => {
   const initialValues = {
