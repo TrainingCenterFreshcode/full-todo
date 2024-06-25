@@ -1,47 +1,62 @@
 import React, { useReducer } from 'react';
+import { connect } from 'react-redux';
 
-const reducer = (state, action) => { // action.type ; action.payload
-  switch(action.type) {
-    case 'COUNTER_PLUS': {
-      return {
-        counter: state.counter + 1
-      };
-    }
-    case 'COUNTER_MINUS': {
-      return {
-        counter: state.counter - 1
-      }
-    }
-    default: return state;
-  }
-}
-
-const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, {
-    counter: 0
-  });
+const Counter = (props) => {
+  
 
   const increment = () => {
     const action = {
       type: 'COUNTER_PLUS'
     }
-    dispatch(action);
+    props.dispatch(action);
   }
 
   const decrement = () => {
     const action = {
       type: 'COUNTER_MINUS'
     }
-    dispatch(action);
+    props.dispatch(action);
   }
+
+  console.log(props);
 
   return (
     <>
-      <h1>{state.counter}</h1>
+      <h1>{props.counter}</h1>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
     </>
   );
 }
 
-export default Counter;
+const mapStateToProps = (state) => {
+  return state;
+}
+
+const WrappedCounter = connect(mapStateToProps)(Counter);
+
+export default WrappedCounter;
+
+/*
+
+connect - функція, яка приймає два опціональні аргументи і підписує компоненту на оновлення стейту
+
+- mapStateToProps
+Функція, яка приймає ВЕСЬ стейт і повертає тільки ту частину стейту, яка потрібна саме цій компоненті
+
+
+
+
+
+Каріювання функцій
+f(a, b, c) -> f(a)(b)(c)
+
+function add(x) {
+    return function(y) {
+        return x + y;
+    }
+}
+
+add(2)(3) // 5
+
+*/
