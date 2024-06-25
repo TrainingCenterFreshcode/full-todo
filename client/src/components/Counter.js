@@ -1,30 +1,16 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { incrementAction, decrementAction } from '../actions/actionCreator';
 
 const Counter = (props) => {
-  
-
-  const increment = () => {
-    const action = {
-      type: 'COUNTER_PLUS'
-    }
-    props.dispatch(action);
-  }
-
-  const decrement = () => {
-    const action = {
-      type: 'COUNTER_MINUS'
-    }
-    props.dispatch(action);
-  }
 
   console.log(props);
 
   return (
     <>
       <h1>{props.counter}</h1>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
+      <button onClick={props.increment}>+</button>
+      <button onClick={props.decrement}>-</button>
     </>
   );
 }
@@ -33,7 +19,19 @@ const mapStateToProps = (state) => {
   return state;
 }
 
-const WrappedCounter = connect(mapStateToProps)(Counter);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     increment: () => dispatch(incrementAction()),
+//     decrement: () => dispatch(decrementAction())
+//   }
+// }
+
+const mapDispatchToProps = {
+  increment: incrementAction,
+  decrement: decrementAction
+}
+
+const WrappedCounter = connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 export default WrappedCounter;
 
@@ -44,8 +42,8 @@ connect - функція, яка приймає два опціональні а
 - mapStateToProps
 Функція, яка приймає ВЕСЬ стейт і повертає тільки ту частину стейту, яка потрібна саме цій компоненті
 
-
-
+-mapDispatchToProps
+Функція, яка повертає обʼєкт, в якому наші actonCreator's огортаються dispatchem
 
 
 Каріювання функцій
