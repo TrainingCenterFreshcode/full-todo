@@ -1,7 +1,8 @@
 import ACTION_TYPES from './actions/actionTypes';
 
 const initialState = {
-  counter: 0
+  counter: 0,
+  step: 1
 }
 
 const reducer = (state = initialState, action) => {
@@ -9,13 +10,13 @@ const reducer = (state = initialState, action) => {
     case ACTION_TYPES.INCREMENT: {
       return {
         ...state,
-        counter: state.counter + 1
+        counter: state.counter + state.step
       }
     }
     case ACTION_TYPES.DECREMENT: {
       return {
         ...state,
-        counter: state.counter - 1
+        counter: state.counter - state.step
       }
     }
     default: return state;

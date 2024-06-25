@@ -9,6 +9,7 @@ const Counter = (props) => {
   return (
     <>
       <h1>{props.counter}</h1>
+      <input type='number' name='step' />
       <button onClick={props.increment}>+</button>
       <button onClick={props.decrement}>-</button>
     </>
@@ -56,5 +57,22 @@ function add(x) {
 }
 
 add(2)(3) // 5
+
+*/
+
+
+
+
+/*
+
+задача: впровадити зміну кроку для лічильника
+
+1. actionType
+
+2. actionCreator
+
+3. actionCreator -> mapDispatchToProps
+
+4. Reducer (як оновити стан, якщо цей екшен прийшов в редьюсер)
 
 */
