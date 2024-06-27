@@ -8,6 +8,11 @@ const httpClient = axios.create({
   baseURL: CONSTANTS.API_BASE,
 });
 
+export const exampleAPI = async (counter) => {
+  const { data } = await axios.post('http://localhost:5001/example/counter', { counter });
+  return data;
+}
+
 // USER API
 
 export const registerUser = async (userData) =>
