@@ -1,54 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import TodoList from '../components/TodoList/TodoList';
-// import { getTasks, createTask, deleteTask } from '../api/taskApi';
-import { getTasks, createTask, deleteTask } from '../api/axiosApi';
 import TodoForm from '../components/TodoForm/TodoForm';
+import { getTasksRequest, createTaskRequest, deleteTaskRequest } from '../actions/actionCreator';
+import { connect } from 'react-redux';
 
-const TodoPage = () => {
+const TodoPage = (props) => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    getTasks()
-    .then(({ data: { data } }) => {
-      setTodos(data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    props.getTasksRequest();
   }, []);
 
   const getNewTd = (data) => {
-    createTask({
+    props.createTaskRequest({
       status: 'new',
       ...data
-    })
-    .then(({ data: { data: createdTask } }) => {
-      const newTodo = [...todos, createdTask];
-      setTodos(newTodo);
-    })
-    .catch(err => {
-      console.error(err);
     });
   }
 
   const delTask = (id) => {
-    deleteTask(id)
-    .then(({ data: { data: deletedTask } }) => {
-      const filteredArray = todos.filter(td => td._id !== deletedTask._id);
-      setTodos(filteredArray);
-    })
-    .catch(error => {
-      console.error(error);
-    })
+    props.deleteTaskRequest(id);
   }
 
   return (
     <>
       <h1>Todo List</h1>
       <TodoForm sendData={getNewTd} />
-      <TodoList todos={todos} delCallback={delTask} />
+      <TodoList todos={props.tasks} delCallback={delTask} />
     </>
   );
 }
 
-export default TodoPage;
+const mapStateToProps = ({ tasks }) => ({ tasks });
+
+const mapDispatchToProps = {
+  getTasksRequest,
+  createTaskRequest,
+  deleteTaskRequest
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);
