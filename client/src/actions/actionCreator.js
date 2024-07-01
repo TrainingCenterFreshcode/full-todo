@@ -104,7 +104,7 @@ export const createTaskSuccess = (payload) => {
 
 export const createTaskError = (payload) => {
   return {
-    type: ACTION_TYPES.DELETE_TASK_ERROR,
+    type: ACTION_TYPES.CREATE_TASK_ERROR,
     payload
   };
 };
