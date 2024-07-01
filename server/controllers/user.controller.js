@@ -160,7 +160,7 @@ module.exports.refreshSession = async (req, res, next) => {
         });
       }
     } else {
-      return res.status(401).send({ error: 'Invalid token' });
+      throw new RefreshTokenError('Token not found');
     }
   } catch (error) {
     next(error);

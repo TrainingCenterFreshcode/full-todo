@@ -10,11 +10,11 @@ import {
 import { connect } from 'react-redux';
 
 const TodoPage = (props) => {
-  const [todos, setTodos] = useState([]);
-
   useEffect(() => {
-    props.getTasksRequest();
-  }, []);
+    if(props.user) {
+      props.getTasksRequest();
+    }
+  }, [props.user]);
 
   const getNewTd = (data) => {
     props.createTaskRequest({
@@ -41,7 +41,7 @@ const TodoPage = (props) => {
   );
 };
 
-const mapStateToProps = ({ tasks }) => ({ tasks });
+const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = {
   getTasksRequest,

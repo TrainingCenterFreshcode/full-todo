@@ -15,7 +15,7 @@ export function* getTasksSaga() {
 
     yield put(getTasksSuccess(data));
   } catch (error) {
-    yield put(getTasksError(error));
+    yield put(getTasksError(error.response.data.error));
   }
 }
 
@@ -25,7 +25,7 @@ export function* createTaskSaga(action) {
 
     yield put(createTaskSuccess(data));
   } catch (error) {
-    yield put(createTaskError(error));
+    yield put(createTaskError(error.response.data.error));
   }
 }
 
@@ -35,6 +35,6 @@ export function* deleteTaskSaga(action) {
 
     yield put(deleteTaskSuccess(data));
   } catch (error) {
-    yield put(deleteTaskError(error));
+    yield put(deleteTaskError(error.response.data.error));
   }
 }
