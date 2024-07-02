@@ -73,7 +73,7 @@ httpClient.interceptors.response.use(
       await refreshUser();
 
       // Повторити запит, коли сталася помилка 403
-      await httpClient(error.config);
+      return await httpClient(error.config);
     } else if (error.response.status === 401) {
       await logOut();
       history.push('/');
