@@ -16,8 +16,8 @@ io.on('connect', (socket) => { // socket - об єкт, за допомогою 
   console.log('CONNECTION');
 
   // задача: кожні 5 секунд відправляти на клієнт якесь повідомлення
-  setInterval(() => {
-    io.emit('NEW_NOTIFICATION', { notification: 'Something new happened' });
+  setTimeout(() => {
+    io.emit('NEW_NOTIFICATION', { notification: `Current time: ${Date.now()}` });
   }, 5000);
 
   socket.on('disconnect', (reason) => {
