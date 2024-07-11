@@ -4,7 +4,8 @@ const initialState = {
   user: null,
   tasks: [],
   isLoading: false,
-  error: null
+  error: null,
+  notification: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -84,6 +85,15 @@ const reducer = (state = initialState, action) => {
         ...initialState
       }
     }
+
+    case 'NOTIFICATION': {
+      const { payload: { notification } } = action;
+      return {
+        ...state,
+        notification
+      }
+    }
+
     default: return state;
   }
 }
