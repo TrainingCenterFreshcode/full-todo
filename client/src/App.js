@@ -12,6 +12,7 @@ import { authUserRequest } from './actions/actionCreator';
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthByQRCode from './pages/AuthByQRCode/AuthByQRCode';
 
 function App(props) {
   useEffect(() => {
@@ -41,6 +42,7 @@ function App(props) {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tasks/" element={<TodoPage />} />
+        <Route path='/authByQR/' element={<AuthByQRCode />} />
       </Routes>
     </HistoryRouter>
   );
@@ -53,3 +55,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+// http://localhost:3000/authByQR/?refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZiMWVmMzA3ZmEyMjY2M2M0MDIwYWUiLCJlbWFpbCI6ImphbmUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTcyMDgwNDkwMSwiZXhwIjoxNzIwODA4NTAxfQ.2JWh8Xx4yYQcxETCFS0N_uQb1N3SWl-KcZDTGCYxrXw

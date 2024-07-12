@@ -1,0 +1,6 @@
+POST http://localhost:5001/api/users/authByQRCode HTTP/1.1
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZiMWVmMzA3ZmEyMjY2M2M0MDIwYWUiLCJlbWFpbCI6ImphbmUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTcyMDgwNjIyMywiZXhwIjoxNzIwODA5ODIzfQ.QUMoc9E75bJwRw27-Pch-CnKiwiFYRS4hJtxYpdhq34"
+}
