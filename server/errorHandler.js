@@ -2,8 +2,13 @@ const { Error: { ValidationError, CastError } } = require("mongoose");
 const NotFoundError = require('./errors/NotFound');
 const { JsonWebTokenError, TokenExpiredError } = require('jsonwebtoken');
 const RefreshTokenError = require('./errors/RefreshTokenError');
+const EmptyuserError = require('./errors/EmptyUserError');
 
 module.exports.errorHandler = async (err, req, res, next) => {
+  if(err instanceof EmptyuserError) {
+    return res.status(400).send({ error: err.message });
+  }
+
   if(err instanceof ValidationError) {
     return res.status(400).send({ error: err.message });
   }
