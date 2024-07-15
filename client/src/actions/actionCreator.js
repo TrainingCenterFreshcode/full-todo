@@ -154,5 +154,11 @@ export const authByQRCodeError = (payload) => {
 export const emptyUserObjectRequest = () => {
   return {
     type: ACTION_TYPES.EMPTY_USER_OBJECT_REQUEST
-  }
-}
+  };
+};
+
+export const refreshTaskList = () => {
+  return {
+    type: ACTION_TYPES.REFRESH_TASK_LIST
+  };
+};

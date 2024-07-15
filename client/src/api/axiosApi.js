@@ -3,6 +3,7 @@ import CONSTANTS from '../constants';
 import history from '../BrowserHistory';
 import store from '../store';
 import io from 'socket.io-client';
+import { refreshTaskList } from '../actions/actionCreator';
 
 // INSTANCE
 
@@ -17,6 +18,10 @@ socket.on(CONSTANTS.SOCKET_EVENT_NOTIFICATION, (data) => {
     type: 'NOTIFICATION',
     payload: data
   });
+});
+
+socket.on(CONSTANTS.SOCKET_REFRESH_TASK_LIST, () => {
+  store.dispatch(refreshTaskList());
 });
 
 // USER API
