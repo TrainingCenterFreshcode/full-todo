@@ -25,6 +25,11 @@ module.exports.registrationUser = async (req, res, next) => {
       email: createdUser.email,
     });
 
+    await RefreshToken.create({
+      token: refreshToken,
+      userId: createdUser._id,
+    });
+
     return res.status(201).send({ data: createdUser, tokens: { accessToken, refreshToken } });
   } catch (error) {
     next(error);

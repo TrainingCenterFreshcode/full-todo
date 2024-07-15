@@ -16,9 +16,11 @@ import AuthByQRCode from './pages/AuthByQRCode/AuthByQRCode';
 
 function App(props) {
   useEffect(() => {
-    if (!props.user) {
-      props.authUserRequest();
-    }
+    setTimeout(() => {
+      if (!props.user) {
+        props.authUserRequest();
+      }
+    }, 500);
   }, []);
 
   useEffect(() => {
@@ -55,5 +57,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-// http://localhost:3000/authByQR/?refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZiMWVmMzA3ZmEyMjY2M2M0MDIwYWUiLCJlbWFpbCI6ImphbmUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTcyMDgwNDkwMSwiZXhwIjoxNzIwODA4NTAxfQ.2JWh8Xx4yYQcxETCFS0N_uQb1N3SWl-KcZDTGCYxrXw

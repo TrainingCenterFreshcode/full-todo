@@ -129,3 +129,30 @@ export const deleteTaskError = (payload) => {
     payload
   };
 };
+
+export const authByQRCodeRequest = (payload) => {
+  return {
+    type: ACTION_TYPES.AUTH_QR_USER_REQUEST,
+    payload
+  };
+};
+
+export const authByQRCodeSuccess = (payload) => {
+  return {
+    type: ACTION_TYPES.AUTH_QR_USER_SUCCESS,
+    payload
+  };
+};
+
+export const authByQRCodeError = (payload) => {
+  return {
+    type: ACTION_TYPES.AUTH_QR_USER_ERROR,
+    payload
+  };
+};
+
+export const emptyUserObjectRequest = () => {
+  return {
+    type: ACTION_TYPES.EMPTY_USER_OBJECT_REQUEST
+  }
+}

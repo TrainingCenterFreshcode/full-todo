@@ -1,4 +1,5 @@
 import { registerUser, loginUser, authUser, logOut } from '../api/axiosApi';
+import { authByQRCode } from '../api/authByQRCodeApi';
 import {
   loginUserSuccess,
   loginUserError,
@@ -6,6 +7,8 @@ import {
   registerUserError,
   authUserSuccess,
   authUserError,
+  authByQRCodeSuccess,
+  authByQRCodeError
 } from '../actions/actionCreator';
 import { put } from 'redux-saga/effects';
 import history from '../BrowserHistory';
@@ -51,4 +54,25 @@ export function* authSaga() {
 export function* logOutSaga() {
   yield logOut();
   history.push('/');
+}
+
+export function* authByQRCodeSaga(action) {
+  try {
+    // 1 дія: робимо запит на АПІ
+    const { data } = yield authByQRCode({
+      refreshToken: action.payload
+    });
+
+    // 2 дія: отримані токени записуємо в localStorage користувача
+    const { tokens: { accessToken, refreshToken } } = data;
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    // 3 дія: перенаправляємось на компоненту, яка використає токени і відобразить таски користувача
+    history.push('/tasks');
+
+    yield put(authByQRCodeSuccess(data));
+  } catch (error) {
+    yield put(authByQRCodeError(error));
+  }
 }
